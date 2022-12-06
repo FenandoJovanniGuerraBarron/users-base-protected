@@ -5,12 +5,12 @@ const passport = require('passport')
 
 const jwtSecret= require('../../config').api.jwtSecret
 
+const { findUserById } = require('../users/users.controllers')
+
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
     secretOrKey: jwtSecret
 }
-
-const { findUserById } = require('../users/users.controllers')
 
 passport.use(
     new JwtStrategy(options,async(tokenDecoded,done)=>{
@@ -25,4 +25,4 @@ passport.use(
     })
 )
 
-module.exports = passport
+module.exports = passport 
